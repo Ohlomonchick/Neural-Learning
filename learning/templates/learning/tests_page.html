@@ -1,0 +1,97 @@
+{% extends 'learning/base.html' %}
+{% load learning_tags %}
+
+
+{% block content %}
+
+    <div class="main-science main-block {{ posts.0.cat.slug }}">
+			<div class="main-opacity science-opacity">
+				<span class="title-section organizer-main-title">{{ posts.0.cat.name }}</span>
+			</div>
+		</div>
+		<div class="section">
+			    <div class="grid-container {% if posts.count == 2 %} grid-container-human {% endif %}">
+                {%  show_is_test post=posts.0 as is_t %}
+                {% if user.is_authenticated or not is_t %}
+				    <article class="main-listing">
+
+						<a class="location-title" href="{{ posts.0.get_absolute_url }}">
+							Подробнее
+						</a>
+
+					     <div class="location-image">
+						     <a href="#">
+						     	<img width="300" height="169" src="{{posts.0.photo.url}}" alt="Подробнее">
+						     </a>
+					     </div>
+
+					    <h1>{{posts.0.title}}</h1>
+				    </article>
+                {% else %}
+                    <article class="main-listing main-locked">
+
+						<a class="location-title">
+						</a>
+
+					     <div class="location-image-locked">
+						     <a href="#">
+						     	<img width="300" height="169" src="{{posts.0.photo.url}}" alt="Подробнее">
+						     </a>
+					     </div>
+
+					    <h1 class="locked-title">{% if posts.0.level.pk >= 2 %} Необходим уровень {{ posts.0.level.pk }} {% else %}Зарегистрируйтесь для доступа{% endif %}</h1>
+				    </article>
+                {% endif %}
+                    {% if posts.count == 2 %}
+                    <article class="main-listing main-listing-second">
+
+						<a class="location-title" href="{{ posts.1.get_absolute_url }}">
+							Подробнее
+						</a>
+
+					     <div class="location-image">
+						     <a href="#">
+						     	<img width="300" height="169" src="{{posts.1.photo.url}}" alt="Подробнее">
+						     </a>
+					     </div>
+
+					    <h1>{{posts.1.title}}</h1>
+				    </article>
+                    {% else %}
+                    {% with posts|slice:"1::" as posts %}
+                    {% for p in posts %}
+                        {% if request.user.profile.level.pk >= p.level.pk and not p.slug == 'recurrent_networks'%}
+                            <article class="location-listing">
+                                {% if not p.slug == 'trap' %}
+                                <a class="location-title" href="{{ p.get_absolute_url }}">
+                                    Подробнее
+                                </a>
+                                {% endif %}
+
+                                 <div  {% if p.slug == 'trap' %} class="location-image trap-picture" {% else %} class="location-image" {% endif %}>
+                                        <img width="300" height="169" src="{{p.photo.url}}" alt="Подробнее">
+                                 </div>
+                                 {% if not p.slug == 'trap' %} <h1>{{p.title}}</h1> {% endif %}
+                            </article>
+                        {% elif not p.slug == 'recurrent_networks'  %}
+                            <article class="location-listing-locked">
+                                <a class="location-title">
+                                </a>
+
+                                 <div class="location-image-locked">
+                                     <a href="#">
+                                        <img width="300" height="169" src="{{p.photo.url}}" alt="Подробнее">
+                                     </a>
+                                 </div>
+                                 <h1 class="locked-title">Необходим уровень {{ p.level.pk }}</h1>
+                            </article>
+                        {% endif %}
+
+                    {% endfor %}
+                    {% endwith %}
+                    {% endif %}
+			  </div>
+			  <!-- end grid container -->
+		</div>
+
+{% endblock %}

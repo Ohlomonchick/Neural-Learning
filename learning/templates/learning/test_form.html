@@ -1,0 +1,41 @@
+{% extends 'learning/base.html' %}
+
+{% block content %}
+    <div class="article-text-block">
+        <div class="container">
+            <div class="article-paragraph paragraph-center">
+                <h1 class="paragraph-title" style="color:white;">Тест по теме {{ article.title }}</h1>
+            </div>
+            <form action="" method="POST">
+                {% csrf_token %}
+                {{ formset.management_form }}
+                {% for form in formset %}
+                <div class="article-paragraph paragraph-center">
+                    <div class="form-content">
+
+                        <div class="form-error">{{ form.non_field_errors }}</div>
+                    {% for f in form %}
+
+                    <label class="paragraph-title" for="{{ f.id_for_label }}">{{f.label}} </label><br>{{ f }}
+                    <div class="form-error">{{ f.errors }}</div>
+                    {% endfor %}
+                {#    {% for p in articles %}#}
+                {#    <h1 class="form-label">{{ p.title }}</h1>#}
+
+                    </div>
+                </div>
+                {% endfor %}
+
+                <div class="article-paragraph paragraph-center">
+                    <div class="form-content">
+                    <button type="submit" name="Submit">Завершить тест</button>
+                    </div>
+                </div>
+
+            </form>
+{#            </div>#}
+         </div>
+	</div>
+
+
+{% endblock %}}

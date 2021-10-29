@@ -1,0 +1,28 @@
+{% extends 'learning/base.html' %}
+
+{% block content %}
+    <div class="article-text-block">
+        <div class="container">
+        <div class="article-paragraph paragraph-center">
+            <h1 class="paragraph-title">{{ title }}</h1>
+        </div>
+            <form method="post">
+                {% csrf_token %}
+            <div class="article-paragraph paragraph-center">
+            <div class="error">{{ form.non_field_errors }}</div>
+                <div class="form-content flex-form">
+                {% for f in form %}
+                <p><label class="paragraph-title" for="{{ f.id_for_label }}">{{ f.label }}: </label>{{ f }}</p>
+                <div class="error">{{ f.errors }}</div>
+                {% endfor %}
+                </div>
+            </div>
+                            <div class="article-paragraph paragraph-center">
+                                <div class="form-content">
+                                    <button type="submit">&nbsp;&nbsp;&nbsp;&nbsp;Войти&nbsp;&nbsp;&nbsp;&nbsp;</button>
+                                </div>
+                            </div>
+            </form>
+        </div>
+    </div>
+{%  endblock %}

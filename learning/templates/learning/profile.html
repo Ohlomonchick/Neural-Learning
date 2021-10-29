@@ -1,0 +1,38 @@
+{% extends 'learning/base.html' %}
+
+{% block content %}
+<div class="main-block">
+    <div class="main-opacity">
+        <div class="container">
+            <div class="container-center">
+                <div class="main-container profile-main-container">
+                    <div class="description profile-window">
+                        {% if request.user.is_authenticated %}
+
+                            <h1 class="bg-text">Имя: {{ request.user }}</h1>
+                            <div class="level-block"><h1 class="paragraph-title profile-title">Уровень:
+                                <h1 class="paragraph-title profile-title block-num">{{ request.user.profile.level }}</h1></h1></div>
+                            <h1 class="paragraph-title profile-title">Очки: {{ request.user.profile.experience }}/{{ request.user.profile.level.points }}</h1>
+                            <div class="profile-link-container">
+                            <a class="profile-link" href="{% url 'logout' %}">Выйти</a>
+                        </div>
+                        </div>
+                        {% else %}
+                            <h1 class="bg-text">Войдите в Профиль</h1>
+                        <div class="profile-link-container">
+                            <a class="profile-link" href="{% url 'login' %}">ВХОД</a>
+                        </div>
+                            <h1 class="paragraph-title profile-title">Нет аккаунта?</h1>
+                            <div class="profile-link-container">
+                                <a class="profile-link" href="{% url 'register' %}">Регистрация</a>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{%  endblock %}

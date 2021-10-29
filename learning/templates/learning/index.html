@@ -1,0 +1,68 @@
+{% extends 'learning/base.html' %}
+{% load static %}
+{% block content %}
+
+{#    <video autoplay muted loop id="myVideo">#}
+{#  				<source src="videos/Cyberpunk.mp4" type="video/mp4">#}
+{#		</video>#}
+    <div id="particles-js"></div>
+		<div class="main-opacity on-video">
+				<div class="container">
+					<div class="container-center">
+						<h1 class="main-titleF">NEURAL
+							<span class="main-title2"></span>
+						</h1>
+						<div class="main-container">
+						<div>
+
+
+						</div>
+						</div>
+
+					</div>
+				</div>
+				<div class="scrollme scrollme-on-video" style=" ;">
+					<svg viewBox="0 0 32 32" height="35" width="35">
+						<path stroke="#ffffff" stroke-width="2px" d="M2.000,5.000 L15.000,18.000 L28.000,5.000 "></path>
+					</svg>
+				</div>
+			</div>
+		<div class="prev-main main-block">
+			<div class="main-opacity prev-op">
+				<div class="container">
+					<div class="container-center">
+						<div class="main-container">
+						<div class="description">
+							<h2 class="bg-text">Дорогой читатель</h2>
+                            <p>&nbsp;&nbsp;&nbsp;Если ты зашёл на эту платформу, скорее всего ты интересуешься темой искусственного интеллекта. </p>
+							<p>&nbsp;&nbsp;&nbsp;Здесь ты найдёшь информацию о нейронных сетях: их устройстве, обучении и применении. По мере изучения данного материала ты сам научишься проектировать нейронные сети.
+                            Всё, что для этого необходимо - <a href="{% url 'register' %}">пройти&nbsp;регистрацию.</a> После ты сможешь приступить к изучению.</p>
+                            <p>Проходи уроки, выполняй тесты, зарабатывай очки и открывай доступ к новым знаниям!</p>
+						</div>
+						</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="the-best">
+			<h1>История</h1>
+		</div>
+        {% for h in historical %}
+		<div class="main-article-block higher">
+			<img class="preview-img higher" src="{{h.photo.url}}">
+				<div class="news-container organizer-news higher-contained">
+					<h1 class="news-name">
+						{{ h.title }}
+					</h1>
+					<a href="{{ h.get_absolute_url }}" class="news-button orginizer-news-button">
+						Подробнее
+					</a>
+				</div>
+		</div>
+        {% endfor %}
+
+		</div>
+
+{% endblock %}

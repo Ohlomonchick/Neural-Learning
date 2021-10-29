@@ -1,0 +1,34 @@
+{% extends 'learning/base.html' %}
+
+{% block content %}
+
+    <div class="main-article-block">
+        <img class="preview-img" src="{{article.photo.url}}">
+
+        <div class="news-container article-news">
+            <h1 class="news-name">
+                {{article.title}}
+            </h1>
+        </div>
+    </div>
+    <div class="article-text-block">
+        <div class="container">
+            {% autoescape off %}
+
+                {{article.content|linebreaks}}
+
+            {% endautoescape %}
+        {% if is_test %}
+            <div class="article-paragraph">
+                <h1 class="paragraph-title" >Пройдите тест и заработайте очки!</h1><br>
+                {% if is_finished %}
+                    <a class="profile-link" href="test/">Пройти ещё раз</a>
+                {% else %}
+                    <a class="profile-link" href="test/">Пройти тест</a>
+                {% endif %}
+            </div>
+        {% endif %}
+        </div>
+	</div>
+
+{% endblock %}}
