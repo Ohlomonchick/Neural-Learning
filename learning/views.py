@@ -24,7 +24,7 @@ from .utils import *
 
 
 class LearningHome(DataMixin, ListView):
-    template_name = 'learning/Congratulations.html'
+    template_name = 'learning/index.html'
     context_object_name = 'posts'        # по умолчанию object_list
 
     def get_context_data(self, *, object_list=None, **kwargs):
