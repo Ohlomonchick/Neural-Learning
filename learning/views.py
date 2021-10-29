@@ -28,10 +28,10 @@ class LearningHome(DataMixin, ListView):
     context_object_name = 'posts'        # по умолчанию object_list
 
     def get_context_data(self, *, object_list=None, **kwargs):
-        # context = super().get_context_data(**kwargs)
-        # historical = Articles.objects.filter(cat=Category.objects.get(slug='history'))
-        # c_def = self.get_user_context(title='Главная страница', cat_selected=0, historical=historical)
-        # return dict(list(context.items()) + list(c_def.items()))
+        context = super().get_context_data(**kwargs)
+        historical = Articles.objects.filter(cat=Category.objects.get(slug='history'))
+        c_def = self.get_user_context(title='Главная страница', cat_selected=0, historical=historical)
+        return dict(list(context.items()) + list(c_def.items()))
         pass
 
     def get_queryset(self):
