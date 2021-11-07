@@ -1039,6 +1039,7 @@ img {
 	text-transform: uppercase;
 	font-weight: bold;
 	line-height: 2.5vh;
+	width: 38vh;
 }
 
 .email a {
